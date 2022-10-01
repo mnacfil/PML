@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import {Link} from 'react-router-dom';
 import { useGlobalContext } from "../context";
+import HTMLReactParser from "html-react-parser";
 
 const Home = () => {
-
-    const {value, setValue, processThePmlOrder, output} = useGlobalContext();
+    const [value, setValue] = useState('');
+    const {processThePmlOrder, output} = useGlobalContext();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,7 +38,7 @@ const Home = () => {
                     </form>
                 </div>
                 <div className="pml-output">
-                    {output}
+                    {HTMLReactParser(output)}
                 </div>
             </div>
         </main>
