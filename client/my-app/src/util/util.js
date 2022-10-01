@@ -1,3 +1,6 @@
+import axios from 'axios';
+
+let url = `http://localhost:5002/api/v1/orders/create-order`;
 
 // regex, that convert tag to xml
 const convertTagToXml = (tag) => {
@@ -133,5 +136,84 @@ const convertXMLtoHTML = (order) => {
 
 // To Do
 // setup post request and save the order in database
+const convertXMLtoObjectSchema = (order) => {
+    const xml = convertTagToXml(order);
 
-export {isPmlOrderValid, displayReadableOrder};
+    // initialize the variable for post request
+    let orderSchema = {};
+    const orderTag = xml.getElementsByTagName('order')[0];
+    const orderNumber = orderTag.getAttribute('number');
+
+    // add orderNumber to object and set it's value to order number
+    orderSchema.orderNumber = orderNumber;
+    
+    const pizzas = orderTag.getElementsByTagName('pizza');
+    // initialize pizzaWrapper to wrap all the pizza detail
+    let pizzaWrapper = [];
+    for(const pizza of pizzas) {
+
+        // start of loop for pizza
+        const pizzaNumber = pizza.getAttribute('number');
+        const size = pizza.getElementsByTagName('size')[0].textContent;
+        const crust = pizza.getElementsByTagName('crust')[0].textContent;
+        const type = pizza.getElementsByTagName('type')[0].textContent;
+
+        // initialize toppingWrapper to wrap all the toppings
+        let toppingsWrapper = [];
+        if(type === 'custom') {
+            // start of loop for toppings
+            const toppings = pizza.getElementsByTagName('toppings');
+            for(const topping of toppings) {
+                // get the toppingArea
+                const toppingArea = topping.getAttribute('area');
+                let area;
+                if(Number(toppingArea) === 0) {
+                    area = 'Whole:';
+                } else if(Number(toppingArea) === 1) {
+                    area = 'First-Half:';
+                }
+                else {
+                    area = 'Second-Half:';
+                }
+                const items = topping.getElementsByTagName('item');
+                let itemWrapper = [];
+                // start of loop for item
+                for(const item of items) {
+                    itemWrapper.push({item: item.textContent})
+                } // end of loop for item
+                toppingsWrapper.push({
+                    toppingArea: area,
+                    toppingItem: itemWrapper
+                })
+            } // end of loop for topping
+        }
+        pizzaWrapper.push({
+            pizzaNumber: pizzaNumber,
+            size,
+            crust,
+            type,
+            toppings: toppingsWrapper
+        })
+    } // end of loop for pizza
+    orderSchema.pizzas = pizzaWrapper;
+    return orderSchema;
+}
+
+const saveOrderToDatabase = async (order) => {
+    const orderSchema = convertXMLtoObjectSchema(order);
+    console.log(JSON.stringify(orderSchema));
+    try {
+        const response = await axios.post(url, JSON.stringify(orderSchema));
+        console.log(response);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export {isPmlOrderValid, displayReadableOrder, saveOrderToDatabase};
+
+// TO DO
+// Solve the bug, when the browser perform Post request to server,
+// it always return error (Please provide order number)
+// Even though it have order number
+// But when you test in postman, it works. It is actually save in database

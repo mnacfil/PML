@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext, useState } from "react";
-import {displayReadableOrder, isPmlOrderValid} from "./util/util";
+import {displayReadableOrder, isPmlOrderValid, saveOrderToDatabase} from "./util/util";
 
 const AppContext = React.createContext();
 
@@ -11,7 +11,10 @@ const AppProvider = ({ children }) => {
         const result = isPmlOrderValid(order);
         if(result === true) {
             const output = displayReadableOrder(order);
+            // display the output in UI
             outputSuccess(output);
+            // Save this order to Database
+            saveOrderToDatabase(order);
             return
         }
         outputError(result);
