@@ -27,3 +27,9 @@
 # For the the toppings
 
     - Any item can be
+
+### PIZZA Test Over (Images)
+
+    - The screenshots contains the home, orders and stats page
+    can be view in /client/my-app/Assets folder
+    - You can see how this app works dynamically
