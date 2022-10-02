@@ -1,4 +1,3 @@
-import axios from 'axios';
 
 let url = `http://localhost:5002/api/v1/orders/create-order`;
 
@@ -58,7 +57,7 @@ const convertXMLtoHTML = (order) => {
 
     // add order html to htmlWrapper
     htmlWrapper += orderHtml;
-
+    htmlWrapper += `<div className="pizza-center">`;
     const pizzas = orderTag.getElementsByTagName('pizza');
     for (const pizza of pizzas) {
         const pizzaNumber = pizza.getAttribute('number');
@@ -128,6 +127,7 @@ const convertXMLtoHTML = (order) => {
         
         `;
     }
+    htmlWrapper += `</div>`;
     // end of htmlWrapper
     htmlWrapper += `</article>`;
 
@@ -200,10 +200,18 @@ const convertXMLtoObjectSchema = (order) => {
 }
 
 const saveOrderToDatabase = async (order) => {
-    const orderSchema = convertXMLtoObjectSchema(order);
-    console.log(JSON.stringify(orderSchema));
+    let orderSchema = convertXMLtoObjectSchema(order);
     try {
-        const response = await axios.post(url, JSON.stringify(orderSchema));
+        const data = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+                'Content-type' : 'application/json'
+            },
+            body: JSON.stringify(orderSchema)
+        })
+        const response = await data.json();
         console.log(response);
     } catch (error) {
         console.log(error);

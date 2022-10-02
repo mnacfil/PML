@@ -6,8 +6,19 @@ const createOrder = async (req, res) => {
 }
 
 const getOrders = async (req, res) => {
-    const orders = await Order.find({});
-    res.status(201).json({orders, countr: orders.length})
+    const { size, type } = req.query;
+    // let query = {};
+    // if(size) {
+    //     query.size = size;
+    // }
+    // if(type) {
+    //     query.type = type;
+    // }
+    // TO DO
+    // Query parameter
+    let result = Order.find({})
+    const orders = await result;
+    res.status(200).json({orders, count: orders.length})
 }
 
 module.exports = {

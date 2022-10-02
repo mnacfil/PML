@@ -25,13 +25,17 @@ const PizzaDetailSchema = new mongoose.Schema({
     type: {
         type: String,
         enum: {
-            values:  ['Hawaiian', 'Chicken Fajita', 'pepperoni feast', 'custom'],
+            values:  ['hawaiian', 'chicken fajita','cheese mania', 'pepperoni feast', 'custom'],
             message: `{VALUE} is not supported`
         },
         required: [true, 'Please provide type of pizza']
     },
     crust: {
         type: String,
+        enum: {
+            values:  ['hand-tossed', 'thin Crust', 'deep dish'],
+            message: `{VALUE} is not supported`
+        },
         required: [true, 'Please provide crust of pizza']
     },
     toppings: [toppingSchema],

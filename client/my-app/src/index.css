@@ -5,7 +5,7 @@
 }
 
 /* fonts */
-/* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&family=Montserrat&display=swap"); */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
 
 html {
   font-size: 100%;
@@ -54,7 +54,7 @@ html {
   --borderRadius: 0.25rem;
   --letterSpacing: 1px;
   --transition: 0.3s ease-in-out all;
-  --max-width: 1120px;
+  --max-width: 1200px;
   --fixed-width: 600px;
 
   /* box shadow*/
@@ -69,8 +69,7 @@ html {
 
 body {
   background: var(--backgroundColor);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 400;
   line-height: 1.75;
   color: var(--textColor);
@@ -282,8 +281,8 @@ main {
 
 .pml-center {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 2rem;
+  max-width: var(--max-width);
 }
 
 .pml-input {
@@ -307,6 +306,7 @@ main {
 
 .submit-btn {
   width: 100%;
+  font-size: 1.25rem;
 }
 
 .submit-btn:hover {
@@ -314,12 +314,13 @@ main {
 }
 
 .pml-output {
-      padding: 1rem;
-      background: white;
-      border-radius: 1rem;
-      box-shadow: var(--shadow-2);
-      display: grid;
-      place-items: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-2);
+    display: grid;
+    place-items: center;
+  
 }
 
 .output-order h2{
@@ -329,47 +330,49 @@ main {
   padding: .5rem 1rem;
   border-radius: 1rem;
   text-align: center;
-  
+  font-weight: bold;
+}
+
+.pizza-center {
+  display: grid;
+  gap: 1rem;
 }
 
 .pizza-container {
-  background-color: var(--primary-500);
+  background-color: var(--grey-100);
   padding: 1rem;
   border-radius: 1rem;
   color: var(--white);
   box-shadow: var(--shadow-4);
 }
-.pizza-container:not(:last-child) {
-  margin-bottom: 1rem;
-}
 
 .pizza-container h3 {
+  color: var(--primary-700);
   font-weight: bold;
 }
 
 .pizza-container .pizza-details {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin-top: -1rem;
+  margin-bottom: 1rem ;
 }
 
 .pizza-container .pizza-details p {
   margin: 0;
   text-transform: uppercase;
-  background-color: var(--primary-100);
   color: var(--grey-900);
   padding: 0 .5rem;
   border-radius: .5rem;
+  font-weight: bold;
+  color: var(--primary-500);
 }
 
 .topping-container {
   display: grid;
-  gap: 1rem;
-  margin-top: 1rem;
 }
 
 .topping-container div {
-  background-color: var(--primary-100);
   color: var(--grey-900);
   padding: .25rem;
   border-radius: .25rem;
@@ -377,29 +380,50 @@ main {
 
 .topping-container div h5 {
   font-size: 1rem;
+  font-weight: bold;
   margin: 0;
 }
 
 .topping-container div div {
-  margin-left: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .topping-container div div span {
   display: block;
-  background-color: var(--primary-200);
   padding: .25rem;
   width: 8rem;
-  text-align: center;
   border-radius: .25rem;
   text-transform: capitalize;
   letter-spacing: 1px;
-
+  color: var(--primary-500);
+  position: relative;
+  font-weight: 600;
 }
-.topping-container div div span:not(:last-child) {
-  margin-bottom: .25rem;
+.topping-container div div span::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--primary-500);
+  position: absolute;
+  top: 16px;
+  left: -5px;
 }
 
 /* INVALID PML */
 .invalid {
   color: var(--red-dark);
+}
+
+@media screen and (min-width: 800px) {
+  .pizza-center {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1192px) {
+  .pml-center {
+    grid-template-columns: 1fr 2fr;
+  }
 }
