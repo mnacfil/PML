@@ -69,6 +69,8 @@
     4. Have a filter to search for all orders by Size, Crust, Type and/or Number of Toppings
         - You can filter all the orders that are returning by adding query parameter
 
-            - take note, you add one size || one crust || one type query parameter OR you can combine size, type || type, crust || size, crust query parameter OR all of them, see example below.
+            - take note, you add one size || one crust || one type query parameter 
+            OR you can combine size, type || type, crust || size, crust query parameter 
+            OR all of them, see example below.
 
             - https://pml-pizza-test.herokuapp.com/api/v1/orders/get-orders?type=hawaiian&size=small&crust=thin crust
