@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
 
-let url = 'http://localhost:5002/api/v1/orders/topping-stats';
+let localUrl = 'http://localhost:5002/api/v1/orders/topping-stats';
+let prodUrl = 'https://pml-pizza-test.herokuapp.com/api/v1/orders/topping-stats'
 
 const Stats = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -10,7 +11,7 @@ const Stats = () => {
     const getToppingStats = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch(url);
+            const response = await fetch(prodUrl);
             const data = await response.json()
             setStats(data.stats);
             setIsLoading(false);

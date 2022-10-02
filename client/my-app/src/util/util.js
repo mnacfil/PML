@@ -1,5 +1,6 @@
 
-let url = `http://localhost:5002/api/v1/orders/create-order`;
+let localUrl = `http://localhost:5002/api/v1/orders/create-order`;
+let prodUrl = 'https://pml-pizza-test.herokuapp.com/api/v1/orders/create-order'
 
 // regex, that convert tag to xml
 const convertTagToXml = (tag) => {
@@ -202,7 +203,7 @@ const convertXMLtoObjectSchema = (order) => {
 const saveOrderToDatabase = async (order) => {
     let orderSchema = convertXMLtoObjectSchema(order);
     try {
-        const data = await fetch(url, {
+        const data = await fetch(prodUrl, {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
