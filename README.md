@@ -56,3 +56,19 @@
     - Go to /client/my-app
     - npm install
     - npm start (start the app)
+
+# PIZZA test check point
+
+    1. Save every order in a database so that it can be reviewed later. (DONE);
+    2. Save every toppings and give a sum of every topping used (DONE)
+        - You can view on stats page (Where behind the scene there's aggregation
+        pipiline that count how many topping were mostly used)
+    3. Validate that the passed PML is a valid PML (DONE)
+        - If you put wrong syntac of PML, for example you remove curly braces, remove white space, or remove the end element.
+        - It will displa "INVALID PML"
+    4. Have a filter to search for all orders by Size, Crust, Type and/or Number of Toppings
+        - You can filter all the orders that are returning by adding query parameter
+
+            - take note, you add one size || one crust || one type query parameter OR you can combine size, type || type, crust || size, crust query parameter OR all of them, see example below.
+
+            - https://pml-pizza-test.herokuapp.com/api/v1/orders/get-orders?type=hawaiian&size=small&crust=thin crust
