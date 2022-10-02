@@ -13,42 +13,44 @@ const Home = () => {
 
     return (
         <main>
-            <div className="title">
-                <h2>We make your order easier</h2>
-                <div className="title-underline"></div>
-            </div>
-            <div className="pml-center">
-                <div className="pml-input">
-                    <form className="pml-form" onSubmit={handleSubmit}>
-                        <h2>pml order</h2>
-                        <textarea  
-                            id="pml-textarea" 
-                            placeholder="You're order here..."
-                            value={value}
-                            onChange={(e) => setValue(e.target.value)}
-                            >
-                        </textarea>
-                        <button 
-                            className="submit-btn btn"
-                            type="submit"
-                            onClick={() => processThePmlOrder(value)}
-                            >
-                            submit
-                        </button>
-                    </form>
+            <div className="navbar">
+                <div className="title">
+                    <h2>Pizza Test</h2>
+                    <div className="title-underline"></div>
                 </div>
-                <div className="pml-output">
-                    {HTMLReactParser(output)}
-                </div>
+                <div className="link-container">
+                    <Link to={'/orders'}>All orders</Link>
+                    <Link to={'/stats'}>Topping stats</Link>
+                </div> 
             </div>
+            <section className="pml-content">
+                <div className="pml-center">
+                    <div className="pml-input">
+                        <form className="pml-form" onSubmit={handleSubmit}>
+                            <h2>pml order</h2>
+                            <textarea  
+                                id="pml-textarea" 
+                                placeholder="You're order here..."
+                                value={value}
+                                onChange={(e) => setValue(e.target.value)}
+                                >
+                            </textarea>
+                            <button 
+                                className="submit-btn btn"
+                                type="submit"
+                                onClick={() => processThePmlOrder(value)}
+                                >
+                                submit
+                            </button>
+                        </form>
+                    </div>
+                    <div className="pml-output">
+                        {HTMLReactParser(output)}
+                    </div>
+                </div>
+            </section>
         </main>
     )
 }
-
-
-{/* <div className="link-container">
-            <Link to={'/orders'}>view orders</Link>
-            <Link to={'/stats'}>view stats</Link>
-        </div> */}
 
 export default Home;

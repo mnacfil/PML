@@ -273,10 +273,37 @@ ul {
 
 
 /* PML */
-main {
+.navbar {
+  width: 80vw;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pml-content {
   display: grid;
   place-items: center;
   min-height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link-container > *{
+  font-size: 1.25rem;
+  background-color: var(--primary-500);
+  padding: .25rem .5rem;
+  color: white;
+  font-weight: 700;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+.link-container > *:not(:last-child) {
+  margin-right: 1rem;
 }
 
 .pml-center {
@@ -425,5 +452,91 @@ main {
 @media screen and (min-width: 1192px) {
   .pml-center {
     grid-template-columns: 1fr 2fr;
+  }
+}
+
+/* STATS page */
+
+.loading,
+.stats-page, 
+.orders-page{
+  display: grid;
+  place-items: center;
+  min-height: 80vh;
+}
+
+.stats-center {
+  background-color: var(--white);
+  padding: 2rem ;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.stat {
+  padding: .5rem .875rem;
+  color: var(--primary-900);
+}
+
+.stat h4 {
+  margin: 0;
+  font-weight: 700;
+}
+
+.stat h4 span {
+  color: var(--primary-500);
+}
+
+.home-link {
+  font-size: 1.5rem;
+  background-color: white;
+  box-shadow: var(--shadow-4);
+  border-radius: 1rem;
+    padding: .5rem .875rem;
+    color: white !important;
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Order Page */
+
+.order-center {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+  width: 90vw;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.order {
+  background-color: var(--white);
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-2);
+}
+.order h4 {
+  font-weight: bold;
+}
+.order h5 {
+  margin: 0;
+}
+.pizza-detail {
+  text-align: left;
+  margin-left: 2rem;
+  padding: .5rem;
+}
+.pizza-detail p {
+  color: var(--grey-500);
+  margin: 0;
+}
+
+@media screen and (min-width: 1000px) {
+  .order-center {
+    max-width: var(--max-width);
+    margin: 0 auto;
   }
 }

@@ -12,9 +12,9 @@ function App() {
   return <>
     <BrowserRouter>
       <Routes>
-        <Route path={'/'} element={<Home />}/>
-        <Route path={'orders'} element={<Orders />}/>
-        <Route path={'stats'} element={<Stats />}/>
+          <Route path='/' element={<Home />}/>
+          <Route path={'orders'} element={<Orders />}/>
+          <Route path={'stats'} element={<Stats />}/>
       </Routes>
     </BrowserRouter>
   </>
