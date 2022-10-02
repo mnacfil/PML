@@ -33,7 +33,7 @@ const PizzaDetailSchema = new mongoose.Schema({
     crust: {
         type: String,
         enum: {
-            values:  ['hand-tossed', 'thin Crust', 'deep dish'],
+            values:  ['hand-tossed', 'thin crust', 'deep dish'],
             message: `{VALUE} is not supported`
         },
         required: [true, 'Please provide crust of pizza']

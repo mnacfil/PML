@@ -6,17 +6,52 @@ const createOrder = async (req, res) => {
 }
 
 const getOrders = async (req, res) => {
-    const { size, type } = req.query;
-    // let query = {};
-    // if(size) {
-    //     query.size = size;
-    // }
-    // if(type) {
-    //     query.type = type;
-    // }
-    // TO DO
-    // Query parameter
-    let result = Order.find({})
+    const { size, type, crust } = req.query;
+    let query = {};
+
+    if(type && (!size && !crust)) {
+        query = {
+            'pizzas.type': type,
+        }
+    }
+    if(size && (!type && !crust)) {
+        query = {
+            'pizzas.size': size,
+        }
+    }
+    if(crust && (!size && !type)) {
+        query = {
+            'pizzas.crust': crust,
+        }
+    }
+    if(!type && (size && crust)) {
+        query = {
+            'pizzas.size': type,
+            'pizzas.crust': crust,
+        }
+    }
+    if(!size && (type && crust)) {
+        query = {
+            'pizzas.type': type,
+            'pizzas.crust': crust,
+        }
+    }
+    if(!crust && (size && type)) {
+        query = {
+            'pizzas.size': size,
+            'pizzas.type': type,
+        }
+    }
+    if(type && (size && crust)) {
+        query = {
+            'pizzas.size': size,
+            'pizzas.crust': crust,
+            'pizzas.type': type,
+        }
+    }
+
+    let result = Order.find(query);
+
     const orders = await result;
     res.status(200).json({orders, count: orders.length})
 }
